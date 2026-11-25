@@ -80,7 +80,7 @@ const Index = () => {
       document.getElementById('homepage-faq-jsonld')?.remove();
     };
   }, []);
-  const { listings } = useListings();
+  const { listings, isLoading } = useListings();
   const { data: counties = [] } = useCounties();
   const [q, setQ] = useState('');
   const navigate = useNavigate();
@@ -148,7 +148,7 @@ const Index = () => {
           <div className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-foreground/25 bg-foreground/25 sm:grid-cols-4">
             {stats.map((s) => (
               <div key={s.label} className="bg-card p-4 text-center">
-                <p className="text-3xl font-bold text-primary sm:text-4xl" style={{ fontFamily: 'var(--font-heading)' }}>{s.value.toLocaleString()}</p>
+                <p className="text-3xl font-bold text-primary sm:text-4xl" style={{ fontFamily: 'var(--font-heading)' }}>{isLoading ? '—' : s.value.toLocaleString()}</p>
                 <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground sm:text-sm">{s.label}</p>
               </div>
             ))}
@@ -171,7 +171,7 @@ const Index = () => {
                 <div className="p-5">
                   <h3 className="text-xl font-bold text-foreground group-hover:text-primary">{d.name}</h3>
                   <p className="mt-1 text-sm text-muted-foreground">{d.anchor}</p>
-                  <p className="mt-3 text-sm font-semibold text-primary">{regionCounts[d.key].toLocaleString()} listings · {d.counties.length} jurisdictions</p>
+                  <p className="mt-3 text-sm font-semibold text-primary">{isLoading ? 'Loading listings…' : `${regionCounts[d.key].toLocaleString()} listings · ${d.counties.length} jurisdictions`}</p>
                 </div>
               </Link>
             ))}
@@ -206,7 +206,9 @@ const Index = () => {
             <h2 className="text-2xl font-bold text-foreground sm:text-3xl">Recently Added</h2>
             <Link to="/directory" className="flex items-center gap-1 text-sm font-bold text-primary">See all <ArrowRight className="h-4 w-4" /></Link>
           </div>
-          {recent.length === 0 ? (
+          {isLoading ? (
+            <p className="rounded-lg border border-foreground/25 bg-card p-8 text-center text-muted-foreground">Loading the newest listings…</p>
+          ) : recent.length === 0 ? (
             <p className="rounded-lg border border-foreground/25 bg-card p-8 text-center text-muted-foreground">New listings will appear here soon.</p>
           ) : (
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{recent.map((l) => <DirectoryCard key={l.id} listing={l} />)}</div>
