@@ -542,7 +542,7 @@ const ListingDetail = () => {
                   const zipMatch = listing.address.match(/\s(\d{5}(?:-\d{4})?)$/);
                   const street = zipMatch ? listing.address.replace(/\s\d{5}(?:-\d{4})?$/, '').trim() : listing.address;
                   const zip = zipMatch ? zipMatch[1] : '';
-                  const fullAddress = `${street}, ${listing.city}, MD${zip ? ' ' + zip : ''}`;
+                  const fullAddress = `${street}, ${listing.city}, AR${zip ? ' ' + zip : ''}`;
                   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fullAddress)}`;
                   return (
                     <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">

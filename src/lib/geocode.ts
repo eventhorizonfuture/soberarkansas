@@ -88,7 +88,7 @@ async function structuredSearchAbbrev(address: string, city: string, zipCode?: s
 
 /** Strategy 3: Free-form query with full address string */
 async function freeformSearch(address: string, city: string, zipCode?: string): Promise<GeoResult | null> {
-  const q = `${address}, ${city}, MD${zipCode ? ' ' + zipCode : ''}, USA`;
+  const q = `${address}, ${city}, AR${zipCode ? ' ' + zipCode : ''}, USA`;
   const params = new URLSearchParams({ format: 'json', q, limit: '1' });
   return fetchGeo(`${NOMINATIM_BASE}?${params.toString()}`);
 }

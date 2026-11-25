@@ -100,7 +100,7 @@ export const CountyTreatment = () => {
   if (type) {
     const items = all.filter((l) => listingTags(l).has(type.tag));
     return (
-      <PageShell title={`${type.label} in ${countyLabel(county.name)}, MD`} description={`${plural(items.length, type.plural.replace(/s$/, ''), type.plural)} in ${countyLabel(county.name)}, Arkansas. Compare programs, see what they offer, and call directly.`}>
+      <PageShell title={`${type.label} in ${countyLabel(county.name)}, AR`} description={`${plural(items.length, type.plural.replace(/s$/, ''), type.plural)} in ${countyLabel(county.name)}, Arkansas. Compare programs, see what they offer, and call directly.`}>
         <PageHero eyebrow={`${countyLabel(county.name)}`} title={`${type.label} in ${countyLabel(county.name)}`} subtitle={`${plural(items.length, 'program', 'programs')}. ${type.blurb}`}>
           <AccessLine county={county} />
           <TypeChips county={county} active={type} types={types} />
@@ -116,7 +116,7 @@ export const CountyTreatment = () => {
   const sections = types.filter((t) => t.tag !== 'medicaid').map((t) => ({ t, items: all.filter((l) => listingTags(l).has(t.tag)) }));
   const mediCal = all.filter((l) => listingTags(l).has('medicaid')).length;
   return (
-    <PageShell title={`Addiction Treatment Centers in ${countyLabel(county.name)}, MD`} description={`${plural(all.length, 'treatment center', 'treatment centers')} in ${countyLabel(county.name)}, Arkansas: inpatient rehab, detox, outpatient, and methadone clinics${mediCal ? `, ${mediCal} taking Medicaid` : ''}.`}>
+    <PageShell title={`Addiction Treatment Centers in ${countyLabel(county.name)}, AR`} description={`${plural(all.length, 'treatment center', 'treatment centers')} in ${countyLabel(county.name)}, Arkansas: inpatient rehab, detox, outpatient, and methadone clinics${mediCal ? `, ${mediCal} taking Medicaid` : ''}.`}>
       <PageHero eyebrow={`${countyLabel(county.name)}`} title={`Addiction treatment centers in ${countyLabel(county.name)}`}
         subtitle={`${plural(all.length, 'program', 'programs')}${mediCal ? ` · ${mediCal.toLocaleString('en-US')} take Medicaid` : ''}`}>
         <AccessLine county={county} />
