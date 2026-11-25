@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#10293E"/>
+  <circle cx="46" cy="18" r="7" fill="#D9A441"/>
+  <rect y="34" width="64" height="5" fill="#8FAE6B"/>
+  <path d="M0,44 C10,41 20,47 32,44 C44,41 54,46 64,43 L64,64 L0,64 Z" fill="#2E6E8E"/>
+  <path d="M0,53 C12,50 24,56 36,53 C46,51 56,55 64,52 L64,64 L0,64 Z" fill="#173F5F"/>
+  <text x="24" y="30" font-family="'Libre Franklin', 'Segoe UI', sans-serif" font-size="22" font-weight="700" fill="#EEF6FB" text-anchor="middle">AR</text>
+</svg>

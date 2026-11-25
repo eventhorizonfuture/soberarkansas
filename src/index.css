@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Franklin:wght@600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  :root {
+    /* SoberArkansas DELTA palette (tokens from the 2026-11-24 design
+       comparison page): deep delta navy #10293E (header/footer), river
+       blue #173F5F (primary), lighter river blue #2E6E8E (secondary /
+       accent), harvest gold #D9A441 (accent buttons, card top-rules)
+       with kicker gold #E8B84B, on pale river mist #F4F6F8, chip blue
+       #DDE9F2, borders #B8CFE0 / #CFDCE6, ink #1B2430 text, crisis
+       crimson #8C1D2F. Libre Franklin headlines set bold and tight,
+       Inter body, kickers in wide-tracked uppercase. */
+    --background: 210 24% 96%;
+    --foreground: 214 28% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 214 28% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 214 28% 15%;
+    --primary: 207 61% 23%;
+    --primary-foreground: 204 56% 95%;
+    --secondary: 206 44% 91%;
+    --secondary-foreground: 207 61% 23%;
+    --muted: 206 30% 88%;
+    --muted-foreground: 214 16% 38%;
+    --accent: 200 51% 37%;
+    --accent-foreground: 0 0% 100%;
+    --brick: 38 72% 38%;
+    --brick-foreground: 0 0% 100%;
+    --gold: 39 67% 55%;
+    --gold-foreground: 214 28% 15%;
+    --map-inpatient: 207 61% 23%;
+    --map-outpatient: 200 51% 37%;
+    --map-sober: 39 67% 42%;
+    --destructive: 350 66% 33%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 207 33% 80%;
+    --input: 206 20% 62%;
+    --ring: 200 51% 37%;
+    --radius: 0.5rem;
+
+    --sidebar-background: 207 59% 15%;
+    --sidebar-foreground: 204 50% 92%;
+    --sidebar-primary: 200 51% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 207 61% 23%;
+    --sidebar-accent-foreground: 204 50% 92%;
+    --sidebar-border: 207 61% 23%;
+    --sidebar-ring: 200 51% 45%;
+
+    --font-heading: 'Libre Franklin', 'Segoe UI', sans-serif;
+    --font-body: 'Inter', 'Segoe UI', sans-serif;
+
+    --gradient-sunset: linear-gradient(180deg, hsl(200 51% 37%) 0%, hsl(207 61% 23%) 70%);
+    --shadow-card: 0 2px 8px -2px hsl(207 50% 16% / 0.10), 0 1px 2px hsl(207 50% 16% / 0.06);
+    --shadow-card-hover: 0 16px 32px -12px hsl(207 61% 23% / 0.25);
+  }
+
+  .dark {
+    --background: 207 48% 8%;
+    --foreground: 204 30% 90%;
+    --card: 207 40% 12%;
+    --card-foreground: 204 30% 90%;
+    --popover: 207 40% 12%;
+    --popover-foreground: 204 30% 90%;
+    --primary: 200 55% 65%;
+    --primary-foreground: 207 55% 9%;
+    --secondary: 207 32% 15%;
+    --secondary-foreground: 204 22% 86%;
+    --muted: 207 32% 14%;
+    --muted-foreground: 207 14% 64%;
+    --accent: 200 55% 65%;
+    --accent-foreground: 207 55% 9%;
+    --brick: 42 77% 60%;
+    --brick-foreground: 207 55% 9%;
+    --gold: 39 67% 58%;
+    --gold-foreground: 207 55% 9%;
+    --destructive: 350 62.8% 30.6%;
+    --destructive-foreground: 204 30% 90%;
+    --border: 207 28% 20%;
+    --input: 207 28% 20%;
+    --ring: 200 55% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  }
+
+  /* Keep listing panel scrollbar always visible */
+  [data-radix-scroll-area-scrollbar] {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+@media print {
+  header, footer, nav, .print\:hidden {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 9px !important;
+  }
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  table {
+    font-size: 8px !important;
+    line-height: 1.1 !important;
+  }
+  table td, table th {
+    padding: 1px 4px !important;
+  }
+  .border {
+    border-color: #ccc !important;
+  }
+  .pagination-controls {
+    display: none;
+  }
+}
+
+/* Leaflet marker label - no default background/border */
+.leaflet-marker-label {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.map-category-inpatient { --map-pin-fill: hsl(var(--map-inpatient)); }
+.map-category-outpatient { --map-pin-fill: hsl(var(--map-outpatient)); }
+.map-category-sober { --map-pin-fill: hsl(var(--map-sober)); }
+.map-category-dot { background-color: var(--map-pin-fill); }
+
+/* Allow map scrolling/dragging even when popup is open */
+.leaflet-popup {
+  pointer-events: none;
+}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip,
+.leaflet-popup-close-button {
+  pointer-events: auto;
+}

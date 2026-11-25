@@ -1,0 +1,41 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1792946561597,
+      "tag": "0000_california_flagship",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792946682131,
+      "tag": "0001_listings_public_new_fields",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1792975645915,
+      "tag": "0002_listings_email",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1793499348392,
+      "tag": "0003_featured_inquiry_backups",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1793537639134,
+      "tag": "0004_featured_listings_server_only_writes",
+      "breakpoints": true
+    }
+  ]
+}

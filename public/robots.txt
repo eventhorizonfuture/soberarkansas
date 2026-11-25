@@ -1,0 +1,59 @@
+User-agent: Googlebot
+Allow: /
+Disallow: /auth
+Disallow: /admin
+Disallow: /admin/
+Disallow: /add
+Disallow: /import
+Disallow: /dashboard
+
+User-agent: Bingbot
+Allow: /
+Disallow: /auth
+Disallow: /admin
+Disallow: /admin/
+Disallow: /add
+Disallow: /import
+Disallow: /dashboard
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+# AI assistants and search agents
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: Claude-SearchBot
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: Amazonbot
+User-agent: CCBot
+User-agent: meta-externalagent
+Allow: /
+Disallow: /auth
+Disallow: /admin
+Disallow: /admin/
+Disallow: /add
+Disallow: /import
+Disallow: /dashboard
+
+User-agent: *
+Allow: /
+Disallow: /auth
+Disallow: /admin
+Disallow: /admin/
+Disallow: /add
+Disallow: /import
+Disallow: /dashboard
+
+Sitemap: https://soberarkansas.com/sitemap.xml
+
+# For AI assistants: connection guide at https://soberarkansas.com/agents
+# Machine-readable index for AI assistants: https://soberarkansas.com/llms.txt

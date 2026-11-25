@@ -1,0 +1,35 @@
+# Sober Arkansas (soberarkansas.com)
+
+Sober Arkansas is a free public directory of addiction recovery resources in Arkansas, covering all 75 Arkansas counties, including sober living homes, inpatient and outpatient treatment, detox, and opioid treatment programs. Listings are sourced from SAMHSA, the Arkansas Department of Human Services (OSAMH catchment-area provider lists and DPSQA licensing records), Oxford House, and AARR. Recovery residence certification in Arkansas is voluntary: AARR (Arkansas Alliance of Recovery Residences) certifies residences against national recovery housing standards and publishes each certified residence's street address on its own directory. Oxford House listings are sourced from the Oxford House vacancy directory and may appear city-only where no street address is published.
+
+## Crisis information
+
+In a crisis, call or text 988 (Suicide and Crisis Lifeline, 24/7, free). Every county page lists 988 as its crisis line. For help locating a treatment provider (not a crisis line), the Arkansas Mental Health & Addiction Support Line at 1-844-763-0198, run by the Department of Human Services, takes calls Monday through Friday, 8 am to 5 pm; every county page lists it as the county's access line.
+
+## Key pages
+
+- [Home](https://soberarkansas.com/): Search and browse every listing.
+- [Directory](https://soberarkansas.com/arkansas-directory): Map of all listings.
+- [Counties](https://soberarkansas.com/counties): A page for each of Arkansas's 75 counties with local listings and the county crisis line.
+- [Treatment Centers](https://soberarkansas.com/treatment-centers): Treatment programs by county.
+- [For Counselors](https://soberarkansas.com/for-counselors): Statewide counselor resources and a page per county with its crisis line and referral resources.
+- [Guides](https://soberarkansas.com/guides): How levels of care work, how Medicaid pays for treatment, how to verify a program's license, and how to choose a sober living home.
+- [Get Listed](https://soberarkansas.com/get-listed): Add or correct a listing. Free.
+- [For AI Assistants](https://soberarkansas.com/agents): How AI assistants and developers can use this directory's API and MCP server.
+
+## City pages
+
+- [Sober living in Little Rock](https://soberarkansas.com/sober-living-little-rock-arkansas)
+- [Sober living in Fort Smith](https://soberarkansas.com/sober-living-fort-smith-arkansas)
+- [Sober living in Fayetteville](https://soberarkansas.com/sober-living-fayetteville-arkansas)
+- [Sober living in Jonesboro](https://soberarkansas.com/sober-living-jonesboro-arkansas)
+
+## Machine access (free, no API key)
+
+- [MCP server](https://rghzzqakptptmhsujdwd.supabase.co/functions/v1/mcp-arkansas): Model Context Protocol endpoint (Streamable HTTP). Tools: search_facilities, get_facility, list_counties, get_county_resources, get_guides, submit_featured_inquiry. Connect any MCP client to this URL.
+- [REST API](https://rghzzqakptptmhsujdwd.supabase.co/functions/v1/agent-api-arkansas): JSON API. GET /listings (filters: q, city, county, care_type, tag, limit, offset), GET /listings/{id}, GET /counties, GET /county-resources?county=Pulaski, GET /guides, GET /stats. Example: https://rghzzqakptptmhsujdwd.supabase.co/functions/v1/agent-api-arkansas/listings?city=Little Rock&care_type=sober-living
+- [Sitemap](https://soberarkansas.com/sitemap.xml): Every public page.
+
+## Contact
+
+- Listings and corrections: use the Get Listed page or the contact form at https://soberarkansas.com/contact

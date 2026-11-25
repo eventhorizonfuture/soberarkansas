@@ -1,0 +1,21 @@
+project_id = "rghzzqakptptmhsujdwd"
+
+[functions]
+  [functions.mcp-arkansas]
+    verify_jwt = false
+  [functions.generate-sitemap-arkansas]
+    verify_jwt = false
+  [functions.scrape-images-arkansas]
+    verify_jwt = false
+  [functions.agent-api-arkansas]
+    verify_jwt = false
+  [functions.auth-email-hook]
+    verify_jwt = false
+  [functions.muse-admin-arkansas]
+    verify_jwt = false
+  [functions.stripe-webhook]
+    verify_jwt = false
+  [functions.submit-featured-inquiry-arkansas]
+    verify_jwt = false
+  [functions.preview-transactional-email]
+    verify_jwt = false
