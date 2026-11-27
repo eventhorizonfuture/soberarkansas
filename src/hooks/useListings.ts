@@ -2,6 +2,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import type { SoberLivingHome } from '@/data/listings';
 import { allFacilityFields } from '@/lib/facilityFields';
+import { fmtPhone } from '@/lib/arkansas';
 
 function rowToListing(row: any): SoberLivingHome {
   const listing: SoberLivingHome = {
@@ -9,7 +10,7 @@ function rowToListing(row: any): SoberLivingHome {
     name: row.name,
     city: row.city,
     address: row.address,
-    phone: row.phone,
+    phone: fmtPhone(row.phone || ''),
     description: row.description,
     features: row.features || [],
     gender: row.gender,

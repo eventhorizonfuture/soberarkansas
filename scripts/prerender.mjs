@@ -45,6 +45,7 @@ function loadEnv() {
 }
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const clip = (s, n) => { const t = String(s ?? '').replace(/\s+/g, ' ').trim(); return t.length <= n ? t : t.slice(0, n - 1).replace(/\s+\S*$/, '') + '…'; };
+const fmtPhone = (phone) => { const d = String(phone ?? '').replace(/\D/g, ''); return d.length === 10 ? `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}` : phone; };
 const fmt = (n) => n.toLocaleString('en-US');
 const normCounty = (s) => String(s || '').toLowerCase().replace(/\s+county$/, '').trim();
 const cl = (n) => (/\sCounty$/i.test(String(n || '')) ? n : `${n} County`);
@@ -139,7 +140,7 @@ async function main() {
     const label = careLabel(l.t);
     const title = `${l.name} – ${label} in ${l.city || 'Arkansas'}, AR | ${SITE}`;
     const description = l.description && l.description.trim().length >= 60 ? clip(l.description, 158)
-      : clip(`${l.name} offers ${label.toLowerCase()} in ${l.city || 'Arkansas'}, Arkansas${l.t.has('medicaid') ? ' and accepts Medicaid' : ''}. ${l.phone ? `Call ${l.phone}` : 'Contact them directly'} for availability and admissions.`, 158);
+      : clip(`${l.name} offers ${label.toLowerCase()} in ${l.city || 'Arkansas'}, Arkansas${l.t.has('medicaid') ? ' and accepts Medicaid' : ''}. ${l.phone ? `Call ${fmtPhone(l.phone)}` : 'Contact them directly'} for availability and admissions.`, 158);
     // One unified JSON-LD builder, shared with the live page (useListingSeo):
     // address-hidden listings publish city only — no street, no ZIP, no geo.
     const ld = buildListingJsonLd({ ...l, zipcode: l.zip_code }, { baseUrl: BASE_URL, canonical, siteName: SITE });
@@ -151,7 +152,7 @@ async function main() {
   <p>${esc(label)} in ${esc(l.city || '')}${county ? `, ${esc(cl(county.name))}` : ''}, Arkansas</p>
   ${services.length ? `<p>Services: ${esc(services.join(' · '))}</p>` : ''}
   <address>${street ? esc(l.address) + ', ' : ''}${esc(l.city || '')}, AR ${esc(l.zip_code || '')}</address>
-  ${l.phone ? `<p>Phone: <a href="tel:${esc(String(l.phone).replace(/[^0-9+]/g, ''))}">${esc(l.phone)}</a></p>` : ''}
+  ${l.phone ? `<p>Phone: <a href="tel:${esc(String(l.phone).replace(/[^0-9+]/g, ''))}">${esc(fmtPhone(l.phone))}</a></p>` : ''}
   ${website ? `<p>Website: <a href="${esc(website)}" rel="nofollow noopener">${esc(l.website)}</a></p>` : ''}
   ${l.description ? `<p>${esc(l.description)}</p>` : ''}
   ${updated ? `<p><small>Listing last updated <time datetime="${updated}">${updated}</time>. Call to confirm availability.</small></p>` : ''}
@@ -179,7 +180,7 @@ async function main() {
     const mc = all.filter((r) => r.t.has('medicaid')).length;
     const title = `Addiction Treatment Centers in ${cl(c.name)}, AR | ${SITE}`;
     const description = `${fmt(all.length)} treatment center${all.length === 1 ? '' : 's'} in ${cl(c.name)}, Arkansas: inpatient rehab, detox, outpatient, and methadone clinics${mc ? `, ${mc} taking Medicaid` : ''}.`;
-    const fmtPhone = (p) => { const d = String(p || '').replace(/\D/g, ''); return d.length === 10 ? `${d.slice(0, 3)}-${d.slice(3, 6)}-${d.slice(6)}` : String(p || ''); };
+    const fmtPhone = (p) => { const d = String(p || '').replace(/\D/g, ''); return d.length === 10 ? `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}` : String(p || ''); };
     const access = c.access_line ? `<p>${esc(c.access_line_label || 'Arkansas DHS access line')}: <a href="tel:${esc(c.access_line.replace(/[^0-9+]/g, ''))}">${esc(fmtPhone(c.access_line))}</a>${c.crisis_line ? ` · Crisis line: <a href="tel:${esc(c.crisis_line.replace(/[^0-9+]/g, ''))}">${esc(fmtPhone(c.crisis_line))}</a>` : ''}</p>` : '';
     const sections = ACTIVE.filter((t) => t.tag !== 'medicaid').map((t) => { const ls = all.filter((r) => r.t.has(t.tag)); return ls.length ? `<h2>${esc(t.label)} (${ls.length})</h2><ul>${ls.map(link).join('')}</ul>` : ''; }).join('');
     const body = `<nav><a href="/">${SITE}</a> › <a href="/treatment-centers">Treatment centers</a></nav><h1>Addiction treatment centers in ${esc(cl(c.name))}</h1><p>${fmt(all.length)} programs${mc ? ` · ${mc} take Medicaid` : ''}.</p>${access}${typeLinks(c)}${sections}<p><a href="/counties/${c.slug}">Sober living homes in ${esc(cl(c.name))}</a></p>`;

@@ -81,10 +81,10 @@ export function matchesQuery(l: SoberLivingHome, q: string) {
 
 export const telHref = (phone: string) => `tel:${(phone || '').replace(/[^\d+]/g, '')}`;
 
-/** Display-format a stored 10-digit phone number as 800-555-1234. */
+/** Display-format a stored 10-digit phone number as (800) 555-1234. */
 export const fmtPhone = (phone: string) => {
   const d = (phone || '').replace(/\D/g, '');
-  return d.length === 10 ? `${d.slice(0, 3)}-${d.slice(3, 6)}-${d.slice(6)}` : phone;
+  return d.length === 10 ? `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}` : phone;
 };
 export const extUrl = (u: string) => (!u ? '' : /^https?:\/\//i.test(u) ? u : `https://${u}`);
 

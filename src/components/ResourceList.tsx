@@ -1,6 +1,6 @@
 import { Phone, ExternalLink } from 'lucide-react';
 import type { CountyResource } from '@/hooks/useArkansas';
-import { extUrl, telHref } from '@/lib/arkansas';
+import { extUrl, telHref, fmtPhone } from '@/lib/arkansas';
 
 const ResourceList = ({ items, empty }: { items: CountyResource[]; empty: string }) => {
   if (items.length === 0) return <p className="rounded-2xl bg-card p-8 text-center text-muted-foreground">{empty}</p>;
@@ -14,7 +14,7 @@ const ResourceList = ({ items, empty }: { items: CountyResource[]; empty: string
             {r.description && <p className="mt-1 text-sm text-muted-foreground">{r.description}</p>}
           </div>
           <div className="mt-auto flex flex-wrap gap-2">
-            {r.phone && <a href={telHref(r.phone)} className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-accent px-4 text-sm font-bold text-accent-foreground"><Phone className="h-4 w-4" /> {r.phone}</a>}
+            {r.phone && <a href={telHref(r.phone)} className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-accent px-4 text-sm font-bold text-accent-foreground"><Phone className="h-4 w-4" /> {fmtPhone(r.phone)}</a>}
             {r.website && <a href={extUrl(r.website)} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-xl border px-4 text-sm font-semibold text-primary hover:bg-secondary"><ExternalLink className="h-4 w-4" /> {r.category === 'Forms' ? 'Download' : 'Website'}</a>}
           </div>
         </article>
